@@ -1,0 +1,63 @@
+name: CI/CD
+on:
+  - push
+jobs:
+  code-checks:
+    name: Code Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: mv .env.example .env
+      - run: npm install
+      - run: npm run test
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run types:check
+  e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: mv .env.example .env
+      - uses: cypress-io/github-action@v4
+        with:
+          build: npm run build
+          start: npm run start
+  deploy:
+    name: Deploy To Vercel
+    runs-on: ubuntu-latest
+    needs: [code-checks, e2e]
+    if: github.repository_owner == 'alan2207'
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: start deployment
+        uses: bobheadxi/deployments@v1
+        id: deployment
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: ${{ fromJSON('["Production", "Preview"]')[github.ref != 'refs/heads/master'] }}
+      - uses: actions/checkout@v3
+      - run: mv .env.example .env
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: ${{ fromJSON('["--prod", ""]')[github.ref != 'refs/heads/master'] }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+          scope: ${{ secrets.VERCEL_ORG_ID}}
+          working-directory: ./
+      - name: update deployment status
+        uses: bobheadxi/deployments@v1
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          env: ${{ steps.deployment.outputs.env }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
