@@ -3,7 +3,7 @@ import { Center } from '@chakra-ui/react';
 import { Link } from '@/components/link';
 import { NotFound } from '@/components/not-found';
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   return (
     <>
       <NotFound />
@@ -12,4 +12,6 @@ export default function NotFoundPage() {
       </Center>
     </>
   );
-}
+};
+
+export default NotFoundPage;
