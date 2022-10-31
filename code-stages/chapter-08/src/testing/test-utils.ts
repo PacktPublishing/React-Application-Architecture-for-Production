@@ -36,7 +36,7 @@ export const checkTableValues = <T extends Entity>({
     );
 
     columns.forEach((column) => {
-      const cell = within(row).getByRole('gridcell', {
+      const cell = within(row).getByRole('cell', {
         name: String(entry[column]),
       });
 

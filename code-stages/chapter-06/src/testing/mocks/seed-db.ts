@@ -1,5 +1,6 @@
-import { db } from './db';
 import { testData } from '../test-data';
+
+import { db } from './db';
 
 export const seedDb = () => {
   const userCount = db.user.count();
