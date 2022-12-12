@@ -29,7 +29,7 @@ alt="https://www.packtpub.com/" border="5" /></a>
 
 
 ## Instructions and Navigations
-All of the project files are organized into folders. For example, Chapter-1.
+All of the project files are organized into folders.
 ## Requirements
 
 - Node.js 16+
