@@ -9,6 +9,8 @@ This is the code repository for [React Application Architecture for Production](
 
 ## What is this book about?
 
+Building large-scale React applications can be overwhelming with the amount of tooling choices and lack of cohesive resources. To address these challenges, this hands-on guide covers best practices and web application development examples to help you build enterprise-ready applications with React in no time.
+
 This book is for intermediate-level web developers who already have a solid understanding of JavaScript, React, and web development in general and want to build large-scale React applications effectively. Beginner-level TypeScript experience, along with JavaScript and React, will be beneficial.
 
 This book covers the following exciting features:
@@ -20,6 +22,7 @@ This book covers the following exciting features:
 * Choose an optimal rendering strategy in Next.js based on the page needs
 * Learn to choose the best state management solution for given problem
 * Write unit tests, integration tests and e2e tests in your React Application
+* Configure CI/CD with GitHub Actions
 * Deploy your React applications on Vercel
 
 If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1801070539) today!
@@ -28,16 +31,13 @@ If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1801
 alt="https://www.packtpub.com/" border="5" /></a>
 
 
-## Instructions and Navigations
-All of the project files are organized into folders.
+
 ## Requirements
 
-- Node.js 16+
-- npm 8+
+- **Node.js** version 16 or above and **npm** version 8 or above
+  [There are a couple of different ways to install node and npm.](https://www.nodejsdesignpatterns.com/blog/5-ways-to-install-node-js/)
 
-[There are a couple of different ways to install node and npm.](https://www.nodejsdesignpatterns.com/blog/5-ways-to-install-node-js/)
-
-• VSCode (optional) is currently the most popular editor/IDE for JavaScript/TypeScript, so we will be using it. It is open source, has great integration with TypeScript, and we can extend its features via extensions. It can be downloaded from here: https://code.visualstudio.com/.
+- **VSCode** (optional) is currently the most popular editor/IDE for JavaScript/TypeScript, so we will be using it. It is open source, has great integration with TypeScript, and we can extend its features via extensions. It can be downloaded from here: https://code.visualstudio.com/.
 
 ## Installation
 
@@ -45,13 +45,15 @@ To start using the code files, the first step is to clone the repository locally
 
 If you are using the repository for the first time, once it is cloned locally, you need to do the following steps:
 
-Install the dependencies:
+##### Install the dependencies:
+to install the dependencies, run the following command:
 
 ```sh
 npm install
 ```
 
-Configure environment variables by creating the `.env` file and copy the content from `.env.example`:
+##### Configure environment
+To configure envirionment variables, create the `.env` file by copying the the content from `.env.example`:
 
 ```sh
 cp .env.example .env
@@ -59,47 +61,54 @@ cp .env.example .env
 
 ## Usage
 
-Select a chapter code:
+The setup has been configured to allow you to work on the code of a specific chapter. To do so, you need to select the chapter code you want to work on. The following commands are available:
+
+
+##### Select a chapter code:
+To select a chapter code, you need to run the following command:
 
 ```sh
 npm run stage:switch
 ```
 
-Start the dev server:
+This command will prompt you with a list of stages for each chapter: 
+```
+? What stage do you want to switch to? (Use arrow 
+ keys) 
+❯ chapter-02 
+ chapter-03 
+ chapter-03-start 
+ chapter-04 
+ chapter-04-start 
+ chapter-05 
+ chapter-05-start 
+(Move up and down to reveal more choices)
+```
+For example, if you want to follow along with the code of chapter 5, you need to select `chapter-05-start`. If you only want to see the final code of chapter 5, you can select `chapter-05`.
+
+The files of the selected chapter will be copied to the main directory. You can now start working on the code.
+
+##### Start the dev server:
+To start the dev server, you need to run the following command:
 
 ```sh
 npm run dev
 ```
+The dev server will be started on port 3000. You can access the application on [http://localhost:3000](http://localhost:3000).
 
-Save changes of the selected chapter code:
-
+##### Save changes of the selected chapter code:
+If you want to save the changes you made to the code of the selected chapter in the main directory, you need to run the following command:
 ```sh
 npm run stage:save
 ```
 
-Clear the chapter selection:
+##### Clear the chapter selection:
+If you want to clear the chapter selection, you need to run the following command:
 
 ```sh
 npm run stage:clear
 ```
 
-
-The code will look like the following:
-
-```
-const Page = () => {
-     return <div>Welcome to the page!</div>
-}
-export default Page;
-
-
-```
-
-**Following is what you need for this book:**
-
-Building large-scale applications in production can be overwhelming with the amount of tooling choices and lack of cohesive resources. To address these challenges, this hands-on guide covers best practices and web application development examples to help you build enterprise-ready applications with React in no time.
-
-With the following software and hardware list you can run all code files present in the book (Chapter 1-10).
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://packt.link/DjfrW).
 
